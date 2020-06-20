@@ -1,10 +1,11 @@
 /* CSS files add styling rules to your content */
 
-body {
+html, body {
   font-family: helvetica, arial, sans-serif;
   margin: 0;
   background-color: black;
   padding: 0 10% 0 10%;
+  height: 100%;
 }
 
 h1 {
@@ -33,6 +34,7 @@ header {
 
 .contenido{
   background-color: #333333;
-  padding: 0 0 0 10px;
+  padding-left: 10px;
   height: 100%;
+  overflow: hidden;
 }
