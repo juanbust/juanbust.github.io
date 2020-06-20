@@ -65,11 +65,12 @@ header {
   padding: 10px;
   border: 5px solid black;
   overflow: auto;
+  width: 75%;
+  height: 200px;
 }
 
 .imagenjuego{
   width: 25%;
-  float: right;
 }
 
 .botonjuego{
