@@ -3,7 +3,7 @@
 html, body {
   font-family: helvetica, arial, sans-serif;
   margin: 0;
-  background-color: black;
+  background-image: linear-gradient(black, #333333);
   padding: 0 10% 0 10%;
   height: 100%;
 }
@@ -18,7 +18,6 @@ p {
 }
 
 header {
-  position: absolute;
   background-color: black;
   color: white;
   padding: 10px;
@@ -31,11 +30,15 @@ header {
   text-decoration: none;
   background-color: #333333;
   padding: 5px;
+  border-radius: 0 0 0 5px;
+}
+
+.paginacont{
+  background-color: #333333; 
+  height: 100%;
+  overflow: hidden;
 }
 
 .contenido{
-  background-color: #333333;
   padding-left: 10px;
-  height: 100%;
-  overflow: hidden;
 }
