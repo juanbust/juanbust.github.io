@@ -88,4 +88,5 @@ header {
 
 .botonjuego:hover{
   background-color: #444444;
+  cursor:pointer;
 }
