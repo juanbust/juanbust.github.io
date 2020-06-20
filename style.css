@@ -3,11 +3,16 @@
 body {
   font-family: helvetica, arial, sans-serif;
   margin: 0;
-  background-color: #333333;
+  background-color: black;
+  padding: 0 10% 0 10%;
 }
 
 h1 {
   font-style: italic;
+  color: white;
+}
+
+p {
   color: white;
 }
 
@@ -24,4 +29,10 @@ header {
   text-decoration: none;
   background-color: #333333;
   padding: 5px;
+}
+
+.contenido{
+  background-color: #333333;
+  padding: 0 0 0 10px;
+  height: 100%;
 }
