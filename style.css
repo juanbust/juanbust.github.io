@@ -90,3 +90,7 @@ header {
   background-color: #444444;
   cursor:pointer;
 }
+
+.title{
+	color: white!important;
+}
