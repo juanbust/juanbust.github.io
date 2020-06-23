@@ -14,12 +14,14 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     let plane = new PIXI.Sprite(resources.plane.texture);
 
     // Setup the position of the bunny
+    let vely = 0;
     plane.x = app.renderer.width * Math.random();
     plane.y = app.renderer.height * Math.random();
 
     // Rotate around the center
     plane.anchor.x = 0.5;
     plane.anchor.y = 0.5;
+
     plane.scale.x = 0.5;
     plane.scale.y = 0.5;
     objs.push(plane)
@@ -29,7 +31,8 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     // Listen for frame updates
     app.ticker.add(() => {
          // each frame we spin the bunny around a bit
-        plane.rotation += Math.random() / 10;
+        vely += 0.1;
+        plane.y += vely;
     });
 }
 });
