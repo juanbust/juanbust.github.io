@@ -23,7 +23,7 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
     plane.anchor.x = 0.5;
     plane.anchor.y = 1;
 
-    plane.scale.x = Math.random() / 2;
+    plane.scale.x = Math.random() / 5;
     plane.scale.y = plane.scale.x;
     objs.push(plane)
     // Add the bunny to the scene we are building
