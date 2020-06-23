@@ -8,7 +8,7 @@ const app = new PIXI.Application({width: window.innerWidth - 10, height: window.
 document.body.appendChild(app.view);
 
 // load the texture we need
-app.loader.add('plane', 'svenh.png').load((loader, resources) => {
+app.loader.add('plane', 'h.png').load((loader, resources) => {
     let objs = [];
     for(let i = 0; i != 100;i++){
     let plane = new PIXI.Sprite(resources.plane.texture);
@@ -23,8 +23,8 @@ app.loader.add('plane', 'svenh.png').load((loader, resources) => {
     plane.anchor.x = 0.5;
     plane.anchor.y = 1;
 
-    plane.scale.x = 0.5;
-    plane.scale.y = 0.5;
+    plane.scale.x = Math.random() * 2;
+    plane.scale.y = Math.random() * 2;
     objs.push(plane)
     // Add the bunny to the scene we are building
     app.stage.addChild(plane);
@@ -40,7 +40,6 @@ app.loader.add('plane', 'svenh.png').load((loader, resources) => {
         if(plane.x > app.renderer.width || plane.x < 0)
         {
             velx = velx * -1;
-            plane.scale.x *= -1;
         }
         plane.y += vely;
         plane.x += velx;
