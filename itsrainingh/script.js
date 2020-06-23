@@ -20,7 +20,7 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
 
     // Rotate around the center
     plane.anchor.x = 0.5;
-    plane.anchor.y = 0.5;
+    plane.anchor.y = 1;
 
     plane.scale.x = 0.5;
     plane.scale.y = 0.5;
@@ -32,7 +32,7 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     app.ticker.add(() => {
          // each frame we spin the bunny around a bit
         vely += 0.1;
-        if(plane.y > 600)
+        if(plane.y > app.renderer.height)
         {
             vely = vely * -1;
         }
