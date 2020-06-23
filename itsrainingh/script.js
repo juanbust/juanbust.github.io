@@ -9,16 +9,18 @@ document.body.appendChild(app.view);
 
 // load the texture we need
 app.loader.add('plane', 'plane.png').load((loader, resources) => {
-    const plane = new PIXI.Sprite(resources.plane.texture);
+    let objs = [];
+    for(let i = 0; i != 20;i++){
+    let plane = new PIXI.Sprite(resources.plane.texture);
 
     // Setup the position of the bunny
     plane.x = app.renderer.width / 2;
     plane.y = app.renderer.height / 2;
 
     // Rotate around the center
-    plane.anchor.x = 0.5;
-    plane.anchor.y = 0.5;
-
+    plane.anchor.x = Math.random();
+    plane.anchor.y = Math.random();
+    objs.push(plane)
     // Add the bunny to the scene we are building
     app.stage.addChild(plane);
 
@@ -27,4 +29,5 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
          // each frame we spin the bunny around a bit
         plane.rotation += 0.01;
     });
+}
 });
