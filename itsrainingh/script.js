@@ -29,7 +29,7 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     // Listen for frame updates
     app.ticker.add(() => {
          // each frame we spin the bunny around a bit
-        plane.rotation += Math.random();
+        plane.rotation += Math.random() / 10;
     });
 }
 });
