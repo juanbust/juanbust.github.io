@@ -14,6 +14,7 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     let plane = new PIXI.Sprite(resources.plane.texture);
 
     // Setup the position of the bunny
+    let velx = 1;
     let vely = 0;
     plane.x = app.renderer.width * Math.random();
     plane.y = app.renderer.height * Math.random();
@@ -34,9 +35,14 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
         vely += 0.1;
         if(plane.y > app.renderer.height)
         {
-            vely = -20;
+            vely = vely * -1;
+        }
+        if(plane.x > app.renderer.width || plane.x < 0)
+        {
+            velx = velx * -1;
         }
         plane.y += vely;
+        plane.x += velx;
     });
 }
 });
