@@ -10,7 +10,7 @@ document.body.appendChild(app.view);
 // load the texture we need
 app.loader.add('plane', 'svenh.png').load((loader, resources) => {
     let objs = [];
-    for(let i = 0; i != 20;i++){
+    for(let i = 0; i != 100;i++){
     let plane = new PIXI.Sprite(resources.plane.texture);
 
     // Setup the position of the bunny
@@ -40,7 +40,7 @@ app.loader.add('plane', 'svenh.png').load((loader, resources) => {
         if(plane.x > app.renderer.width || plane.x < 0)
         {
             velx = velx * -1;
-            mySprite.scale.x *= -1;
+            plane.scale.x *= -1;
         }
         plane.y += vely;
         plane.x += velx;
