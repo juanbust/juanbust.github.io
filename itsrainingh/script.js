@@ -14,12 +14,14 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     let plane = new PIXI.Sprite(resources.plane.texture);
 
     // Setup the position of the bunny
-    plane.x = app.renderer.width / 2;
-    plane.y = app.renderer.height / 2;
+    plane.x = app.renderer.width * Math.random();
+    plane.y = app.renderer.height * Math.random();
 
     // Rotate around the center
-    plane.anchor.x = Math.random();
-    plane.anchor.y = Math.random();
+    plane.anchor.x = 0.5;
+    plane.anchor.y = 0.5;
+    plane.scale.x = 0.5;
+    plane.scale.y = 0.5;
     objs.push(plane)
     // Add the bunny to the scene we are building
     app.stage.addChild(plane);
