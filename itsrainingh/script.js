@@ -32,6 +32,10 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
     app.ticker.add(() => {
          // each frame we spin the bunny around a bit
         vely += 0.1;
+        if(plane.y > 600)
+        {
+            vely = !vely;
+        }
         plane.y += vely;
     });
 }
