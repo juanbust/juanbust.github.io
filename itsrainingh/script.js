@@ -8,7 +8,7 @@ const app = new PIXI.Application({width: window.innerWidth - 10, height: window.
 document.body.appendChild(app.view);
 
 // load the texture we need
-app.loader.add('plane', 'plane.png').load((loader, resources) => {
+app.loader.add('plane', 'svenh.png').load((loader, resources) => {
     let objs = [];
     for(let i = 0; i != 20;i++){
     let plane = new PIXI.Sprite(resources.plane.texture);
@@ -40,6 +40,7 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
         if(plane.x > app.renderer.width || plane.x < 0)
         {
             velx = velx * -1;
+            mySprite.scale.x *= -1;
         }
         plane.y += vely;
         plane.x += velx;
