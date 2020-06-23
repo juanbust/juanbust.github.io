@@ -34,7 +34,7 @@ app.loader.add('plane', 'plane.png').load((loader, resources) => {
         vely += 0.1;
         if(plane.y > app.renderer.height)
         {
-            vely = 100;
+            vely = 10;
         }
         plane.y += vely;
     });
