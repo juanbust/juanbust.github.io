@@ -6,6 +6,7 @@ let objs = [];
 
 function crearH(loader, resources)
 {
+    app.stage.children = [];
     for(let i = 0; i != 100;i++){
         let plane = new PIXI.Sprite(resources.plane.texture);
     
