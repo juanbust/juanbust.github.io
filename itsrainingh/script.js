@@ -4,7 +4,7 @@
 const app = new PIXI.Application({width: window.innerWidth, height: window.innerHeight, backgroundColor: 0xffffff, resizeTo: window});
 
 
-function crearH()
+function crearH(loader, resources)
 {
     for(let i = 0; i != 100;i++){
         let plane = new PIXI.Sprite(resources.plane.texture);
@@ -90,5 +90,5 @@ document.getElementById("hregen").onclick = crearH;
 // load the texture we need
 app.loader.add('plane', 'h.png').load((loader, resources) => {
     let objs = [];
-    crearH();
+    crearH(loader,resources);
 });
