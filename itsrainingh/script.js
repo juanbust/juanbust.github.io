@@ -36,12 +36,12 @@ function crearH(loader, resources)
                     
                     if(plane.y > app.renderer.height)
                     {
-                        vely = ((app.renderer.height - vely) * -1);
+                        vely = (vely * -1);
                         plane.y = app.renderer.height;
                     }
                     else
                     {
-                        vely = ((app.renderer.height - vely) * -1);
+                        vely = (vely * -1);
                         plane.y = 0;
                     }
                     alreadychangedvely = true;
