@@ -58,7 +58,7 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
                 }
                 else
                 {
-                    plane.x = app.renderer.width;
+                    plane.x = 0;
                 }
                 alreadychangedvelx = true;
             }
