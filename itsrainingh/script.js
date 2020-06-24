@@ -1,7 +1,7 @@
 // The application will create a renderer using WebGL, if possible,
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container
-const app = new PIXI.Application({width: window.innerWidth - 10, height: window.innerHeight - 10, backgroundColor: 0xffffff});
+const app = new PIXI.Application({width: window.innerWidth, height: window.innerHeight, backgroundColor: 0xffffff, resizeTo: window});
 
 // The application will create a canvas element for you that you
 // can then insert into the DOM
