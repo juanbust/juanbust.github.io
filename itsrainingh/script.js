@@ -54,7 +54,7 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
                 velx = velx * -1;
                 if(plane.x > app.renderer.width)
                 {
-                    plane.y = app.renderer.width;
+                    plane.x = app.renderer.width;
                 }
                 else
                 {
