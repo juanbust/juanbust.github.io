@@ -40,6 +40,7 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
         if(plane.y > app.renderer.height && !alreadychangedvely)
         {
             vely = vely * -1;
+            plane.y = app.renderer.height;
             alreadychangedvely = true;
         }
         else
@@ -51,6 +52,14 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
             if(!alreadychangedvelx)
             {
                 velx = velx * -1;
+                if(plane.x > app.renderer.width)
+                {
+                    plane.y = app.renderer.width;
+                }
+                else
+                {
+                    plane.x = app.renderer.width;
+                }
                 alreadychangedvelx = true;
             }
             else
