@@ -16,6 +16,8 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
     // Setup the position of the bunny
     let velx = Math.sign(Math.random() - 0.5);
     let vely = 0;
+    let alreadychangedvelx = false;
+    let alreadychangedvely = false;
     plane.x = app.renderer.width * Math.random();
     plane.y = app.renderer.height * Math.random();
 
@@ -35,13 +37,26 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
         app.renderer.width = window.innerWidth;
         app.renderer.height = window.innerHeight;
         vely += 0.1;
-        if(plane.y > app.renderer.height)
+        if(plane.y > app.renderer.height && !alreadychangedvely)
         {
             vely = vely * -1;
+            alreadychangedvely = true;
+        }
+        else
+        {
+            alreadychangedvely = false;
         }
         if(plane.x > app.renderer.width || plane.x < 0)
         {
-            velx = velx * -1;
+            if(!alreadychangedvelx)
+            {
+                velx = velx * -1;
+                alreadychangedvelx = true;
+            }
+            else
+            {
+                alreadychangedvelx = false;
+            }
         }
         plane.y += vely;
         plane.x += velx;
