@@ -37,16 +37,27 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
         app.renderer.width = window.innerWidth;
         app.renderer.height = window.innerHeight;
         vely += 0.1;
-        if(plane.y > app.renderer.height && !alreadychangedvely)
+        if(plane.y > app.renderer.height || plane.y < 0)
         {
-            vely = vely * -1;
-            plane.y = app.renderer.height;
-            alreadychangedvely = true;
+            if(!alreadychangedvely)
+            {
+                vely = vely * -1;
+                if(plane.y > app.renderer.height)
+                {
+                    plane.y = app.renderer.height;
+                }
+                else
+                {
+                    plane.y = 0;
+                }
+                alreadychangedvely = true;
+            }
+            else
+            {
+                alreadychangedvely = false;
+            }
         }
-        else
-        {
-            alreadychangedvely = false;
-        }
+
         if(plane.x > app.renderer.width || plane.x < 0)
         {
             if(!alreadychangedvelx)
