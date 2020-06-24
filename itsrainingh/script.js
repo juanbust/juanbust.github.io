@@ -2,7 +2,7 @@
 // with a fallback to a canvas render. It will also setup the ticker
 // and the root stage PIXI.Container
 const app = new PIXI.Application({width: window.innerWidth, height: window.innerHeight, backgroundColor: 0xffffff, resizeTo: window});
-
+let objs = [];
 
 function crearH(loader, resources)
 {
@@ -89,6 +89,6 @@ document.getElementById("hregen").onclick = crearH;
 
 // load the texture we need
 app.loader.add('plane', 'h.png').load((loader, resources) => {
-    let objs = [];
+    
     crearH(loader,resources);
 });
