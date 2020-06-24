@@ -36,7 +36,7 @@ app.loader.add('plane', 'h.png').load((loader, resources) => {
          // each frame we spin the bunny around a bit
         app.renderer.width = window.innerWidth;
         app.renderer.height = window.innerHeight;
-        vely += 0.1;
+        vely += 0.5;
         if(plane.y > app.renderer.height || plane.y < 0)
         {
             if(!alreadychangedvely)
