@@ -85,10 +85,11 @@ function crearH(loader, resources)
 // can then insert into the DOM
 document.body.appendChild(app.view);
 
-document.getElementById("hregen").onclick = crearH;
+
 
 // load the texture we need
 app.loader.add('plane', 'h.png').load((loader, resources) => {
     
     crearH(loader,resources);
+    document.getElementById("hregen").onclick = crearH(loader,resources);
 });
