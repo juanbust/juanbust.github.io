@@ -3,11 +3,19 @@
 // and the root stage PIXI.Container
 const app = new PIXI.Application({width: window.innerWidth, height: window.innerHeight, backgroundColor: 0xffffff, resizeTo: window});
 let objs = [];
+let cantH = 100;
+
+
+function iniciarH()
+{
+    app.stage.children = [];
+    cantH = document.getElementById("hnumb").value;
+}
 
 function crearH(loader, resources)
 {
-    app.stage.children = [];
-    for(let i = 0; i != 100;i++){
+
+    for(let i = 0; i != cantH;i++){
         let plane = new PIXI.Sprite(resources.plane.texture);
     
         let velx = (Math.random() - 0.5) * 2;
