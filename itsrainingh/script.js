@@ -100,5 +100,5 @@ document.body.appendChild(app.view);
 app.loader.add('plane', 'h.png').load((loader, resources) => {
     
     crearH(loader,resources);
-    document.getElementById("hregen").onclick = function(){crearH(loader,resources)};
+    document.getElementById("hregen").onclick = function(){iniciarH(); crearH(loader,resources);};
 });
