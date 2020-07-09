@@ -1,7 +1,7 @@
 /* CSS files add styling rules to your content */
 @media only screen and (max-width: 600px) {
 
-html {
+html, body {
   font-family: helvetica, arial, sans-serif;
   margin: 0;
   background-size: cover;
