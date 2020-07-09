@@ -7,7 +7,6 @@ html {
   background-color: black;
   background-image: linear-gradient(black, #333333);
   padding: 0 10% 0 10%;
-  min-height: 100%;
   background-repeat: no-repeat;
 }
 
