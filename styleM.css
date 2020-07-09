@@ -41,6 +41,9 @@ header {
 
 .headertitle
 {
+  position: absolute;
+  left: 0;
+  top: 0;
   margin-bottom: 15px;
 }
 
