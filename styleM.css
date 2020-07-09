@@ -39,6 +39,11 @@ header {
   font-size: 25px;
 }
 
+.headertitle
+{
+  margin-bottom: 15px;
+}
+
 .botonheader{
   float: right;
   color: white;
