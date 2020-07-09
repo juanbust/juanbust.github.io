@@ -57,6 +57,7 @@ header {
   position: relative;
   top: 0;
   transition: 0.3s;
+  z-index: 10;
 }
 .botonheader:hover {
   position: relative;

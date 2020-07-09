@@ -39,6 +39,7 @@ header {
 
 .headertitle
 {
+  display:inline-block;
   margin-bottom: 15px;
 }
 
