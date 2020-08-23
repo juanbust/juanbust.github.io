@@ -2,6 +2,7 @@
 
 html, body {
   font-family: helvetica, arial, sans-serif;
+  color: white;
   margin: 0;
   background-size: cover;
   background-color: black;
@@ -13,27 +14,19 @@ html, body {
 
 h1 {
   font-style: italic;
-  color: white;
 }
 
 h2 {
   margin:3px;
-  color: white;
 }
 
 h3 {
-   color: white;
    font-weight: normal;
    font-size: 20px;
 }
 
-p {
-  color: white;
-}
-
 header {
   background-color: black;
-  color: white;
   padding: 15px 15px 0 15px;
 }
 
@@ -45,7 +38,6 @@ header {
 
 .botonheader{
   float: right;
-  color: white;
   margin: 0 0 0 5px;
   text-decoration: none;
   background-color: #333333;

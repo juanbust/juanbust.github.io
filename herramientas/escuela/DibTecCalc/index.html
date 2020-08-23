@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <script src="script.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://juanbust.github.io/style.css">
+    </head>
+    <body>
+        <div class="paginacont">
+            <header>
+                <div class="headertitle">la pagina</div>
+            </header>
+            <div class="contenido">
+                <h1>calculadora de longitud de texto para dibujo tecnico</h1>
+                <label for="frase">Frase a calcular:</label>
+                <input type="text" id="frase" oninput="setvals()"><br>
+                <label for="longitud">Ancho del renglón:</label>
+                <input type="number" id="longitudreng" step="0.01" oninput="setvals()"><br>
+                <label for="letralt">Altura del texto (h):</label>
+                <input type="number" id="letralt" step="0.01" oninput="setvals()"><br><br>
+                Longitud del texto: <div style="display: inline-block;" id="resultadolong">0</div><br>
+                Cuánto saltar para centrar el texto: <div style="display: inline-block;" id="resultadocent">0</div><br>
+                Espaciado entre letras: <div style="display: inline-block;" id="resultadoesplet">0</div><br>
+                Espaciado entre palabras: <div style="display: inline-block;" id="resultadoesppal">0</div><br>
+                Guía: <div style="display: inline-block;" id="resultadoguia">-</div>
+            </div>
+        </div>
+    </body>
+</html>
