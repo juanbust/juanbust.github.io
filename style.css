@@ -30,7 +30,7 @@ header {
   padding: 15px 15px 0 15px;
 }
 
-table {
+table, th, td {
   text-align: center;
   border-color: black;
   border-width: 4px;
