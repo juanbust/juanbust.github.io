@@ -33,8 +33,9 @@ header {
 table, th, td {
   text-align: center;
   border-color: black;
-  border-width: 4px;
+  border-width: 2px;
   border-radius: 2;
+  border-style: solid;
 }
 
 .headertitle
