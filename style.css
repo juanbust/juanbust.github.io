@@ -30,6 +30,10 @@ header {
   padding: 15px 15px 0 15px;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 table, th, td {
   text-align: center;
   border-color: black;
