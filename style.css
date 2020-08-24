@@ -30,6 +30,13 @@ header {
   padding: 15px 15px 0 15px;
 }
 
+table {
+  text-align: center;
+  border-color: black;
+  border-width: 4px;
+  border-radius: 2;
+}
+
 .headertitle
 {
   display:inline-block;

@@ -11,15 +11,24 @@ function setvals() {
     var cuantosaltarparacentrar = 0;
     var eraLetra = false;
     var guialongs = [];
+    // eliminar todas las columnas
+    document.getElementById("filaLetra").innerHTML = ""; 
+    document.getElementById("filaLongitud").innerHTML = "";
+
+    // calcular
     for (let i = 0; i != frase.length; i++) {
-        if (eraLetra && frase.charAt(i) != " ") // si el anterior caracter no era un espacio, añadir la separación entre letras
+        let char = frase.charAt(i);
+        let ind = valind.indexOf(char);
+        if (eraLetra && char != " ") // si el anterior caracter no era un espacio, añadir la separación entre letras
         {
             longitud += 2;
             //guialongs.push(altRound(alturaLetra / 10 * 2));
         }
-        longitud += val[valind.indexOf(frase.charAt(i))]; // añadir la longitud del caracter a la longitud total
-        guialongs.push(frase.charAt(i) + ":" + altRound(alturaLetra / 10 * val[ valind.indexOf( frase.charAt(i) ) ] )); // añadir la longitud del caracter a la guía
-        if (frase.charAt(i) != " ") // si el caracter actual no es un espacio, establecer eraLetra a true
+        longitud += val[ind]; // añadir la longitud del caracter a la longitud total
+        //guialongs.push(char + ":" + altRound(alturaLetra / 10 * val[ind])); // añadir la longitud del caracter a la guía
+        document.getElementById("filaLetra").insertCell(-1).innerHTML = char; // añadir una columna con el caracter a la guía
+        document.getElementById("filaLongitud").insertCell(-1).innerHTML = altRound(alturaLetra / 10 * val[ind]); // añadir una columna con la longitud del caracter a la guía
+        if (char != " ") // si el caracter actual no es un espacio, establecer eraLetra a true
         {
             eraLetra = true;
         } else {
