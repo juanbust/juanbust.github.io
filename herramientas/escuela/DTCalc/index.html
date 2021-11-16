@@ -1,0 +1,45 @@
+<html>
+    <head>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <div id="header">
+          DTCalc
+          <div class="version">
+            v1.0
+          </div>
+          <!--<button id="help-button">Ayuda</button>!-->
+        </div>
+
+        <div class="flex-container">
+          <div class="flex-column">
+            <div id="calc-container">
+              <label for="text-input">Texto a previsualizar:</label><br>
+              <input id="text-input" type="text"></input><br><br>
+
+              <label for="size-input">Tamaño de letra (sin la h):</label><br>
+              <input id="size-input" type="number"></input><br><br>
+
+              <label for="center-input">Centrar texto:</label> 
+              <input id="center-input" type="checkbox"></input><br><br>
+
+              <div id="center-options">
+                <label for="row-input">Ancho del renglón en mm:</label><br>
+                <input id="row-input" type="number"></input><br><br>
+              </div>
+            </div>
+            <div id="preview-container"></div>
+          </div>
+
+          <div class="flex-column">
+            <div id="letterguide-container">
+            </div>
+          </div>
+        </div>
+
+        <script src="libraries/fontfaceobserver.js"></script>
+        <script src="libraries/pixi.min.js"></script>
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+/* don't look at this if you don't want to get a headache ;)*/
+
+@font-face {
+	font-family: "ISOCPEUR";
+	src: url(ISOCPEUR.ttf);
+}
+
+html, body {
+	font-family: "ISOCPEUR";
+	padding: 0;
+	margin: 0;
+	background-image: linear-gradient(#EEE 1px, transparent 1px), linear-gradient(90deg, #EEE 1px, transparent 1px);
+	background-size: 1rem 1rem;
+}
+
+#header {
+	display: flex;
+	width: 100%;
+	font-size: 60px;
+	box-sizing: border-box;
+	padding: 10px 10px 0px 10px;
+	background-color: #fff1cbAA;
+	margin-bottom: 10px;
+}
+
+.version {
+	font-size: 18px;
+	color: #888;
+	align-self: flex-end;
+	margin: 8px;
+}
+
+#help-button {
+	font-size: 20px;
+	font-family: "ISOCPEUR";
+	border-radius: 50px;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	padding: 0 10px 0 10px;
+	margin-left: 10px;
+	height: 40px;
+	background-color: #FFF;
+}
+
+#help-button:hover {
+	background-color: #DDD;
+}
+
+#help-button:active {
+	background-color: #BBB;
+}
+
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+#calc-container * {
+	margin-bottom: 5px;
+	font-size: 18px;
+}
+
+#preview-container {
+	width: 100%;
+	overflow-x: auto;
+}
+
+#letterguide-container {
+	font-size: 20px;
+	text-align: left;
+	padding: 10px;
+	width: fit-content;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	background-color: white;
+}
+
+#letterguide-container table {
+	font-size: 20px;
+	text-align: left;
+    width: auto;
+}
+
+.tip {
+	color: #AAA;
+	font-size: 12px;
+}
+
+input {
+	border-radius: 5px;
+	border-style: solid;
+	border-color: #AAA;
+	border-width: 2px;
+}
