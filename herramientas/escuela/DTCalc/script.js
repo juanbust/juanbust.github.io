@@ -109,208 +109,212 @@ const letterSpacing = 0.2;
 
 let pixiApp;
 
-pixiApp = new PIXI.Application({ width: 1000, height: 200, antialias: true, backgroundAlpha: 0 });
-pixiApp.stage.pivot.set(-2, 0);
-document.getElementById("preview-container").appendChild(pixiApp.view);
+let font = new FontFaceObserver('ISOCPEUR', {});
+// Start loading the font
+font.load().then(() => {
+    pixiApp = new PIXI.Application({ width: 1000, height: 200, antialias: true, backgroundAlpha: 0 });
+    pixiApp.stage.pivot.set(-2, 0);
+    document.getElementById("preview-container").appendChild(pixiApp.view);
 
-PIXI.BitmapFont.from("isocpeur", {
-    fontFamily: "ISOCPEUR",
-    fontSize: 100,
-    strokeThickness: 1,
-    fill: "black"
-}, {
-    chars:  [' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~',
-            ' ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ'],
-});
+    PIXI.BitmapFont.from("isocpeur", {
+        fontFamily: "ISOCPEUR",
+        fontSize: 100,
+        strokeThickness: 1,
+        fill: "black"
+    }, {
+        chars:  [' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~',
+                ' ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ'],
+    });
 
-let graphics = new PIXI.Graphics();
-pixiApp.stage.addChild(graphics);
+    let graphics = new PIXI.Graphics();
+    pixiApp.stage.addChild(graphics);
 
-let tipText = new PIXI.BitmapText("", { fontName: 'isocpeur', fontSize: 14});
-pixiApp.stage.addChild(tipText);
+    let tipText = new PIXI.BitmapText("", { fontName: 'isocpeur', fontSize: 14});
+    pixiApp.stage.addChild(tipText);
 
-let textObjects = [];
+    let textObjects = [];
 
-let textInput = document.getElementById("text-input");
-let sizeInput = document.getElementById("size-input");
-let centerInput = document.getElementById("center-input");
-let rowInput = document.getElementById("row-input");
+    let textInput = document.getElementById("text-input");
+    let sizeInput = document.getElementById("size-input");
+    let centerInput = document.getElementById("center-input");
+    let rowInput = document.getElementById("row-input");
 
-if(!localStorage.DT_text) {
-    localStorage.DT_text = "Hola";
-    localStorage.DT_size = 5;
-    localStorage.DT_center = false;
-    localStorage.DT_row = 0;
-}
-
-if(textInput.value == "") textInput.value = localStorage.DT_text;
-if(sizeInput.value == "") sizeInput.value = localStorage.DT_size;
-centerInput.value = localStorage.DT_center;
-if(rowInput.value == "") rowInput.value = localStorage.DT_row;
-
-function makePreview() {
-    document.getElementById("center-options").style.display = centerInput.checked ? "block" : "none";
-
-    localStorage.DT_text = textInput.value;
-    localStorage.DT_size = sizeInput.value;
-    localStorage.DT_center = centerInput.checked;
-    localStorage.DT_row = rowInput.value;
-
-    renderPreview(textInput.value, sizeInput.value, centerInput.checked, rowInput.value);
-}
-
-textInput.addEventListener("input", makePreview);
-sizeInput.addEventListener("input", makePreview);
-centerInput.addEventListener("click", makePreview);
-rowInput.addEventListener("input", makePreview);
-
-makePreview()
-
-function renderPreview(text, size, centerText, rowLength) {
-    // render las cotas and the main text
-    let textLength = getFullLength(text, size);
-    let canvasTextLength = getFullLength(text, 35);
-    let centeringSpace = rowLength / 2 - textLength / 2; 
-    let canvasCenteringSpace = (rowLength / size * 35) / 2 - canvasTextLength / 2; 
-
-    tipText.x = 0;
-    tipText.y = 150;
-    tipText.text = "";
-
-    graphics.clear();
-
-    if(centerText && centeringSpace < 0) {
-        tipText.text = "El texto que ingresaste no entraba en el renglón;\nla previsualización de centrado fue desactivada.\n\n";
-        tipText.y = 120;
-        centerText = false;
+    if(!localStorage.DT_text) {
+        localStorage.DT_text = "Hola";
+        localStorage.DT_size = 5;
+        localStorage.DT_center = false;
+        localStorage.DT_row = 0;
     }
 
-    if(text.includes("í") || text.includes("Í")) {
-        tipText.text += "Por alguna razón la i con acento aparece fuera de lugar;\nsu posicionamiento vendría a ser el mismo que la i sin acento."
+    if(textInput.value == "") textInput.value = localStorage.DT_text;
+    if(sizeInput.value == "") sizeInput.value = localStorage.DT_size;
+    centerInput.value = localStorage.DT_center;
+    if(rowInput.value == "") rowInput.value = localStorage.DT_row;
+
+    function makePreview() {
+        document.getElementById("center-options").style.display = centerInput.checked ? "block" : "none";
+    
+        localStorage.DT_text = textInput.value;
+        localStorage.DT_size = sizeInput.value;
+        localStorage.DT_center = centerInput.checked;
+        localStorage.DT_row = rowInput.value;
+    
+        renderPreview(textInput.value, sizeInput.value, centerInput.checked, rowInput.value);
     }
-
-    if(centerText) {
-        renderText(canvasCenteringSpace - 2, -5, text, 50, 0);
-
-        drawCota(canvasCenteringSpace, 80, canvasTextLength, roundToHalfs(textLength).toString(), 1);
-        drawCota(0, 80, canvasCenteringSpace, roundToHalfs(centeringSpace).toString(), 2);
-        drawCota(0, 120, rowLength / size * 35, rowLength.toString(), 3);
-    }
-    else {
-        renderText(-2, -5, text, 50, 0);
-
-        drawCota(0, 80, canvasTextLength, roundToHalfs(textLength).toString(), 1);
-        drawCota(-100, 0, 0, "", 2);
-        drawCota(-100, 0, 0, "", 3);
-    }
-
-    // make letter guide
-    let letterGuide = document.getElementById("letterguide-container");
-    letterGuide.innerHTML = "";
-
-    letterGuide.innerText = "Espacio entre letras: " + roundToHalfs(letterSpacing * size) + "mm\n\n";
-    letterGuide.innerText += "Ancho de las letras:\n";
-
-    let letterWidthTable = document.createElement("table");
-
-    for(let i = 0; i != text.length; i++) {
-        let tableRow = document.createElement("tr");
-
-        let letter = document.createElement("td");
-        let equalSign = document.createElement("td");
-        let letterWidth = document.createElement("td");
-
-        letter.innerText = text.charAt(i);
-        equalSign.innerText = "=";
-        letterWidth.innerText = roundToHalfs(charLengths[text.charCodeAt(i)] * size) + "mm";
-
-        tableRow.appendChild(letter);
-        tableRow.appendChild(equalSign);
-        tableRow.appendChild(letterWidth);
-
-        letterWidthTable.appendChild(tableRow);
-    }
-
-    letterGuide.appendChild(letterWidthTable);
-}
-
-function drawCota(x, y, width, text, textId) {
-    graphics.lineStyle(2, 0x000000, 1);
-    graphics.moveTo(x, y);
-    graphics.lineTo(x + width, y);
-
-    // draw end lines
-    graphics.moveTo(x, 0);
-    graphics.lineTo(x, y + 10);
-    graphics.moveTo(x + width, 0);
-    graphics.lineTo(x + width, y + 10);
-
-    // draw arrows at the ends
-    graphics.lineStyle(0);
-    graphics.beginFill(0x000000, 1);
-    graphics.drawPolygon([x, y, x + 16, y + 3, x + 16, y - 3]);
-    graphics.drawPolygon([x + width, y, x + width - 16, y + 3, x + width - 16, y - 3]);
-    graphics.endFill();
-
-
-    renderText(width / 2 - getFullLength(text, 17.5) / 2 + x, y - 25, text, 25, textId);
-}
-
-
-// weird way to accurately render text, but it works
-function renderText(x, y, text, size, textId) {
-    let textObject = { chars: [] };
-
-    if(textObjects[textId]) {
-        for(let i = 0; i != textObjects[textId].chars.length; i++){
-            textObjects[textId].chars[i].destroy();
+    
+    textInput.addEventListener("input", makePreview);
+    sizeInput.addEventListener("input", makePreview);
+    centerInput.addEventListener("click", makePreview);
+    rowInput.addEventListener("input", makePreview);
+    
+    makePreview();
+    
+    function renderPreview(text, size, centerText, rowLength) {
+        // render las cotas and the main text
+        let textLength = getFullLength(text, size);
+        let canvasTextLength = getFullLength(text, 35);
+        let centeringSpace = rowLength / 2 - textLength / 2; 
+        let canvasCenteringSpace = (rowLength / size * 35) / 2 - canvasTextLength / 2; 
+    
+        tipText.x = 0;
+        tipText.y = 150;
+        tipText.text = "";
+    
+        graphics.clear();
+    
+        if(centerText && centeringSpace < 0) {
+            tipText.text = "El texto que ingresaste no entraba en el renglón;\nla previsualización de centrado fue desactivada.\n\n";
+            tipText.y = 120;
+            centerText = false;
         }
-    }
-
-    let xpos = x;
-
-    for(let i = 0; i != text.length; i++){
-        let charObject = new PIXI.BitmapText(text.charAt(i), { fontName: 'isocpeur', fontSize: size});
-        charObject.x = xpos;
-        charObject.y = y;
-
-        pixiApp.stage.addChild(charObject);
-        textObject.chars.push(charObject);
-        xpos += charLengths[text.charCodeAt(i)] * (size-size/(10/3));
-
-        if(text.charAt(i + 1) && text.charAt(i + 1) != " " && text.charAt(i) != " ") {
-            xpos += letterSpacing * (size-size/(10/3));
+    
+        if(text.includes("í") || text.includes("Í")) {
+            tipText.text += "Por alguna razón la i con acento aparece fuera de lugar;\nsu posicionamiento vendría a ser el mismo que la i sin acento."
         }
-    }
-
-    textObjects[textId] = textObject;
-}
-
-function getFullLength(text, h) {
-    let result = 0;
-
-    for(let i = 0; i != text.length; i++) {
-        if(charLengths[text.charCodeAt(i)] != null) {
-            result += charLengths[text.charCodeAt(i)];
-
-            if(text.charAt(i + 1) && text.charAt(i + 1) != " " && text.charAt(i) != " ") {
-                result += letterSpacing;
-            }
+    
+        if(centerText) {
+            renderText(canvasCenteringSpace - 2, -5, text, 50, 0);
+    
+            drawCota(canvasCenteringSpace, 80, canvasTextLength, roundToHalfs(textLength).toString(), 1);
+            drawCota(0, 80, canvasCenteringSpace, roundToHalfs(centeringSpace).toString(), 2);
+            drawCota(0, 120, rowLength / size * 35, rowLength.toString(), 3);
         }
         else {
-           return NaN; 
+            renderText(-2, -5, text, 50, 0);
+    
+            drawCota(0, 80, canvasTextLength, roundToHalfs(textLength).toString(), 1);
+            drawCota(-100, 0, 0, "", 2);
+            drawCota(-100, 0, 0, "", 3);
         }
+    
+        // make letter guide
+        let letterGuide = document.getElementById("letterguide-container");
+        letterGuide.innerHTML = "";
+    
+        letterGuide.innerText = "Espacio entre letras: " + roundToHalfs(letterSpacing * size) + "mm\n\n";
+        letterGuide.innerText += "Ancho de las letras:\n";
+    
+        let letterWidthTable = document.createElement("table");
+    
+        for(let i = 0; i != text.length; i++) {
+            let tableRow = document.createElement("tr");
+    
+            let letter = document.createElement("td");
+            let equalSign = document.createElement("td");
+            let letterWidth = document.createElement("td");
+    
+            letter.innerText = text.charAt(i);
+            equalSign.innerText = "=";
+            letterWidth.innerText = roundToHalfs(charLengths[text.charCodeAt(i)] * size) + "mm";
+    
+            tableRow.appendChild(letter);
+            tableRow.appendChild(equalSign);
+            tableRow.appendChild(letterWidth);
+    
+            letterWidthTable.appendChild(tableRow);
+        }
+    
+        letterGuide.appendChild(letterWidthTable);
     }
-
-    result *= h;
-
-    return result;
-}
-
-function getCenterStart(textLength, rowLength) {
-    return rowLength / 2 - textLength / 2;
-}
-
-function roundToHalfs(number) {
-    return Math.round(number * 2) / 2;
-}
+    
+    function drawCota(x, y, width, text, textId) {
+        graphics.lineStyle(2, 0x000000, 1);
+        graphics.moveTo(x, y);
+        graphics.lineTo(x + width, y);
+    
+        // draw end lines
+        graphics.moveTo(x, 0);
+        graphics.lineTo(x, y + 10);
+        graphics.moveTo(x + width, 0);
+        graphics.lineTo(x + width, y + 10);
+    
+        // draw arrows at the ends
+        graphics.lineStyle(0);
+        graphics.beginFill(0x000000, 1);
+        graphics.drawPolygon([x, y, x + 16, y + 3, x + 16, y - 3]);
+        graphics.drawPolygon([x + width, y, x + width - 16, y + 3, x + width - 16, y - 3]);
+        graphics.endFill();
+    
+    
+        renderText(width / 2 - getFullLength(text, 17.5) / 2 + x, y - 25, text, 25, textId);
+    }
+    
+    
+    // weird way to accurately render text, but it works
+    function renderText(x, y, text, size, textId) {
+        let textObject = { chars: [] };
+    
+        if(textObjects[textId]) {
+            for(let i = 0; i != textObjects[textId].chars.length; i++){
+                textObjects[textId].chars[i].destroy();
+            }
+        }
+    
+        let xpos = x;
+    
+        for(let i = 0; i != text.length; i++){
+            let charObject = new PIXI.BitmapText(text.charAt(i), { fontName: 'isocpeur', fontSize: size});
+            charObject.x = xpos;
+            charObject.y = y;
+    
+            pixiApp.stage.addChild(charObject);
+            textObject.chars.push(charObject);
+            xpos += charLengths[text.charCodeAt(i)] * (size-size/(10/3));
+    
+            if(text.charAt(i + 1) && text.charAt(i + 1) != " " && text.charAt(i) != " ") {
+                xpos += letterSpacing * (size-size/(10/3));
+            }
+        }
+    
+        textObjects[textId] = textObject;
+    }
+    
+    function getFullLength(text, h) {
+        let result = 0;
+    
+        for(let i = 0; i != text.length; i++) {
+            if(charLengths[text.charCodeAt(i)] != null) {
+                result += charLengths[text.charCodeAt(i)];
+    
+                if(text.charAt(i + 1) && text.charAt(i + 1) != " " && text.charAt(i) != " ") {
+                    result += letterSpacing;
+                }
+            }
+            else {
+               return NaN; 
+            }
+        }
+    
+        result *= h;
+    
+        return result;
+    }
+    
+    function getCenterStart(textLength, rowLength) {
+        return rowLength / 2 - textLength / 2;
+    }
+    
+    function roundToHalfs(number) {
+        return Math.round(number * 2) / 2;
+    }
+});
