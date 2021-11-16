@@ -110,9 +110,11 @@ const letterSpacing = 0.2;
 let pixiApp;
 
 let font = new FontFaceObserver('ISOCPEUR', {});
-// Start loading the font
+
+let resolution = document.documentElement.clientWidth < 960 ? document.documentElement.clientWidth * 0.003 : 0;
+
 font.load().then(() => {
-    pixiApp = new PIXI.Application({ width: 1000, height: 200, antialias: true, backgroundAlpha: 0 });
+    pixiApp = new PIXI.Application({ width: 1000, height: 200, antialias: true, backgroundAlpha: 0, resolution: resolution });
     pixiApp.stage.pivot.set(-2, 0);
     document.getElementById("preview-container").appendChild(pixiApp.view);
 

@@ -1,0 +1,113 @@
+/* don't look at this if you don't want to get a headache ;)*/
+
+@font-face {
+	font-family: ISOCPEUR;
+	src: url(ISOCPEUR.ttf);
+}
+
+html, body {
+	font-family: "ISOCPEUR";
+	padding: 0;
+	margin: 0;
+	background-image: linear-gradient(#EEE 1rem, transparent 1rem), linear-gradient(90deg, #EEE 1rem, transparent 1rem);
+	background-size: 10rem 10rem;
+	font-size: 0.3vw;
+}
+
+#header {
+	display: flex;
+	width: 100%;
+	font-size: 60rem;
+	box-sizing: border-box;
+	padding: 10rem 10rem 0rem 10rem;
+	background-color: #fff1cbAA;
+	margin-bottom: 10rem;
+}
+
+.version {
+	font-size: 18rem;
+	color: #888;
+	align-self: flex-end;
+	margin: 8rem;
+}
+
+#help-button {
+	font-size: 20rem;
+	font-family: "ISOCPEUR";
+	border-radius: 50rem;
+	border-style: solid;
+	border-color: black;
+	border-width: 2rem;
+	padding: 0 10rem 0 10rem;
+	margin-left: 10rem;
+	height: 40rem;
+	background-color: #FFF;
+}
+
+#help-button:hover {
+	background-color: #DDD;
+}
+
+#help-button:active {
+	background-color: #BBB;
+}
+
+.flex-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+	margin: 10rem;
+	min-width: 0;
+	box-sizing: border-box;
+}
+
+#calc-container * {
+	margin-bottom: 5rem;
+	font-size: 18rem;
+}
+
+#preview-container {
+	width: 100%;
+	overflow-x: auto;
+}
+
+#letterguide-container {
+	font-size: 20rem;
+	text-align: left;
+	padding: 10rem;
+	width: fit-content;
+	border-radius: 10rem;
+	border-style: solid;
+	border-color: black;
+	border-width: 2rem;
+	background-color: white;
+}
+
+#letterguide-container table {
+	font-size: 20rem;
+	text-align: left;
+    width: auto;
+}
+
+.tip {
+	color: #AAA;
+	font-size: 12rem;
+}
+
+input {
+	border-radius: 5rem;
+	border-style: solid;
+	border-color: #AAA;
+	border-width: 2rem;
+}
+
+input[type="checkbox"] {
+	width: 30rem;
+}
