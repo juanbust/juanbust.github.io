@@ -76,7 +76,6 @@ html, body {
 #preview-container {
 	width: 100%;
 	overflow-x: auto;
-	-webkit-overflow-scrolling: touch;
 }
 
 #letterguide-container {
