@@ -105,6 +105,8 @@ const charLengths = {
     93 : 0.2,
 };
 
+// TO-DO: comment stuff
+
 const letterSpacing = 0.2;
 
 let pixiApp;
